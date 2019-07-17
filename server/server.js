@@ -11,6 +11,15 @@ const Promise = require("promise");
 //3. send back geoservice data to ui
 //URL: http://localhost:8081/gpstrackingnew/geopoint?deviceId=9b9e3bedb0426e75
 // http://geo.tvunetworks.com/geoservice/Out/getGPSBypeeridAndTimestampServlet?peerid=3fa519b01716e5f7
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+  res.header("X-Powered-By",' 3.2.1')
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
+});
+
 app.get("/gpstrackingnew/geopoint", (req, res) => {
   var deviceId = req.query.deviceId;
   var start = req.query.start;

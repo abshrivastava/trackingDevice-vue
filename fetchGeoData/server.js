@@ -5,6 +5,16 @@ let index = 0;
 let latitude = 0;
 let longitude = 0;
 
+
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+  res.header("X-Powered-By",' 3.2.1')
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
+});
+
 app.get("/geoservice/Out/getGPSBypeeridAndTimestampServlet", (request, response) => {
 
   var start = request.query.start;
@@ -66,7 +76,7 @@ app.get("/geoservice/Out/getGPSBypeeridAndTimestampServlet", (request, response)
     latitude = data[index].latitude
     longitude = data[index].longitude
     index++;
-    response.send(JSON.parse('[{"peerID":"9B9E3BEDB0426E75","isTransfer":"1","latitude":' + latitude + ',"accuracy":0,"longitude":' + longitude + ',"timestamp":1542797956000}]'));
+    response.send(JSON.parse('[{"peerID":"123","isTransfer":"1","latitude":' + latitude + ',"accuracy":0,"longitude":' + longitude + ',"timestamp":1542797956000}]'));
   }
   else {
     // response.send(JSON.parse('[]'));
@@ -77,7 +87,7 @@ app.get("/geoservice/Out/getGPSBypeeridAndTimestampServlet", (request, response)
     latitude = data[0].latitude
     longitude = data[0].longitude
     index = 0;
-    response.send(JSON.parse('[{"peerID":"9B9E3BEDB0426E75","isTransfer":"0","latitude":' + latitude + ',"accuracy":0,"longitude":' + longitude + ',"timestamp":1542797956000}]'));
+    response.send(JSON.parse('[{"peerID":"123","isTransfer":"0","latitude":' + latitude + ',"accuracy":0,"longitude":' + longitude + ',"timestamp":1542797956000}]'));
   }
 
 
